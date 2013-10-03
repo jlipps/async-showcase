@@ -1,0 +1,35 @@
+{
+  "name": "async-shootout",
+  "description": "Comparison between various async libraries",
+  "tags": [
+    "javascript",
+    "async",
+    "callbacks",
+    "promises"
+  ],
+  "version": "0.0.1",
+  "author": "jlipps@gmail.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jlipps/async-shootout.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jlipps/async-shootout/issues"
+  },
+  "engines": [
+    "node"
+  ],
+  "main": "./lib/main.js",
+  "directories": {
+    "lib": "./lib"
+  },
+  "dependencies": {
+    "should": "~1.2.1",
+    "monocle-js": "~0.1.8"
+  },
+  "scripts": {
+  },
+  "devDependencies": {
+  }
+}
+
