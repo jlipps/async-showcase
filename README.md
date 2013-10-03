@@ -108,9 +108,155 @@ some argue callbacks lead to less readable or less maintainable code).
 
 ### Rightward drift
 
+It often happens that you want to run a number of asynchronous methods, one
+after the other. In this case, each method must be called in the callback of
+the previous method. Using the anonymous function strategy detailed above, you
+end up with code that looks like this:
+
+```js
+asyncFn1(function() {
+    asyncFn2(function() {
+        asyncFn3(function() {
+            asyncFn4(function() {
+                console.log("We're done!");
+            });
+        });
+    });
+});
+```
+
+To many people, once you start filling these functions out with their own
+particular logic, it's very easy to lose track of where you are in the logical
+flow.
+
 ### Branching logic
 
+Sometimes you might want to call a function `bar()` only if the result of
+another function `foo()` matches some criteria. If these are synchronous
+functions, the logic looks quite straightforward:
+
+```js
+var res = foo();
+if (res === "5") {
+    res = bar(res);
+}
+res = baz(res);
+console.log("After transforming, res is " + res);
+```
+
+If `foo` and `bar` are asynchronous functions, however, it gets a little more
+complicated. One option is to duplicate code:
+
+```js
+foo(function(res) {
+    if (res === "5") {
+        bar(res, function(res2) {
+            baz(res2, function(res3) {
+                console.log("After transforming, res is " + res3);
+            });
+        });
+        return;
+    }
+    baz(res, function(res2) {
+        console.log("After transforming, res is " + res2);
+    });
+});
+```
+
+In this case, we've duplicated the calls to `baz`. An alternative is to create
+a `next` function that encapsulates the `baz` call and subsequent log
+statement:
+
+```js
+var next = function(res) {
+    baz(res, function(res2) {
+        console.log("After transforming, res is " + res2);
+    });
+};
+
+foo(function(res) {
+    if (res === "5") {
+        bar(res, function(res2) {
+            next(res2);
+        });
+        return;
+    }
+    next(res);
+});
+```
+
+This is more DRY, but at the cost of creating a function whose only purpose is
+to continue the logical flow of the code, called in multiple places.
+
 ### Error handling
+
+You can't use Javascript's basic error handling techniques (try/catch) to
+handle errors in callbacks, even if they're defined in the same scope. In other
+words, this doesn't work:
+
+```js
+var crashyFunction = function(cb) {
+    throw new Error("uh oh!");
+};
+
+var runFooBar = function(cb) {
+    foo(function() {
+        crashyFunction(function() {
+            bar(function() {
+                cb();
+            });
+        });
+    });
+};
+
+try {
+    runFooBar(function() {
+        console.log("We're done");
+    });
+} catch (err) {
+    console.log(err.message);
+}
+```
+
+This is why Node.js uses a convention of passing errors into callbacks so they
+can be handled:
+
+```js
+var crashyFunction = function(cb) {
+    try {
+        throw new Error("uh oh!");
+    } catch (e) {
+        cb(e);
+    }
+};
+
+var runFooBar = function(cb) {
+    foo(function(err) {
+        if (err) return cb(err);
+        crashyFunction(function(err) {
+            if (err) return cb(err);
+            bar(function(err) {
+                if (err) return cb(err);
+                cb();
+            });
+        });
+    });
+};
+
+runFooBar(function(err) {
+    if (err) return console.log(err.message);
+    console.log("We're done!");
+});
+
+```
+
+As you can see, the result of this is that we have to check the error state in
+every callback so we can short-circuit the chain and pass the error to the
+top-level callback. This is unfortunately redundant at best and easy to forget
+to do at worst.
+
+Of course, Node.js now has domains, which makes this problem a little easier to
+handle.
 
 Alternatives to callbacks
 -------------------------
