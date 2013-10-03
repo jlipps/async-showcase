@@ -188,6 +188,43 @@ foo(function(res) {
 This is more DRY, but at the cost of creating a function whose only purpose is
 to continue the logical flow of the code, called in multiple places.
 
+### Looping
+
+If you need to perform an async method on a number of objects, it can be
+a little mind-bending. Synchronously, we can do something like this:
+
+```js
+var collection = [objA, objB, objC];
+var response = [];
+for (var i = 0; i < collection.length; i++) {
+    response.push(transformMyObject(collection[i]));
+}
+console.log(response);
+```
+
+If `transformMyObject` is actually asynchronous, and we need to transform each
+object one after the other, we need to do something more like this:
+
+```js
+var collection = [objA, objB, objC];
+var response = [];
+var doTransform = function() {
+    var obj = collection.unshift();
+    if (typeof obj === "undefined") {
+        console.log(response);
+    } else {
+        transformMyObject(obj, function(err, newObj) {
+            response.push(newObj);
+            doTransform();
+        });
+    }
+};
+doTransform();
+```
+
+By most standards of readability, this second async example is much more
+difficult to understand.
+
 ### Error handling
 
 You can't use Javascript's basic error handling techniques (try/catch) to
