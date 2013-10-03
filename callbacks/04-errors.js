@@ -4,25 +4,22 @@ var path = require('path')
   , testFile = path.resolve("..", "testFile.txt");
 
 var gratuitousFileFunction = function(cb) {
-  fs.stat(testFile, function(err) {
-    if (!err) return cb(new Error("File already exists"));
-    fs.writeFile(testFile, "Hello World", function(err) {
-      if (err) return cb(err);
-      setTimeout(function() {
-        fs.appendFile(testFile, "!", function(err) {
+  fs.writeFile(testFile, "Hello World", function(err) {
+    if (err) return cb(err);
+    setTimeout(function() {
+      fs.appendFile(testFile, "!", function(err) {
+        if (err) return cb(err);
+        fs.appendFile(testFile, " :-)", function(err) {
           if (err) return cb(err);
-          fs.appendFile(testFile, " :-)", function(err) {
+          fs.readFile(testFile, function(err, data) {
             if (err) return cb(err);
-            fs.readFile(testFile, function(err, data) {
-              if (err) return cb(err);
-              data = data.toString();
-              data.should.equal("Hello World! :-)");
-              fs.unlink(testFile, cb);
-            });
+            data = data.toString();
+            data.should.equal("Hello World! :-)");
+            fs.unlink(testFile, cb);
           });
         });
-      }, 500);
-    });
+      });
+    }, 500);
   });
 };
 

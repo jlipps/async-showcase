@@ -25,7 +25,8 @@
   },
   "dependencies": {
     "should": "~1.2.1",
-    "monocle-js": "~0.1.8"
+    "monocle-js": "~0.1.8",
+    "monocle-fs": "~0.0.4"
   },
   "scripts": {
   },
