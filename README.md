@@ -2,7 +2,13 @@ Async JS Control Flow Shootout
 ==============================
 
 This is a project designed to showcase different ways to handle asynchronous
-control flow in Javascript.
+control flow in Javascript. If you're familiar with this concept, you might
+want to skip to the [list of projects](#alternatives) or the [description of
+callback issues](#issues).
+
+Note that despite the rather whimsical word "shootout" in the title of this
+project, this is is meant to be an informational, not a competitive, guide to
+all the approaches to flow control on offer.
 
 Background
 ----------
@@ -100,7 +106,7 @@ because they're kicked off at roughly the same time, and their callbacks will
 be called when the system is done reading each one, which could vary based on
 many factors.
 
-The impact of callbacks
+<a name="issues"></a>The impact of callbacks
 -----------------------
 There are a number of issues that arise as part of a callback-based
 architecture. These issues range from the aesthetic to the practical (e.g.,
@@ -125,7 +131,7 @@ asyncFn1(function() {
 });
 ```
 
-To many people, once you start filling these functions out with their own
+To some people, once you start filling these functions out with their own
 particular logic, it's very easy to lose track of where you are in the logical
 flow.
 
@@ -133,7 +139,7 @@ flow.
 
 Sometimes you might want to call a function `bar()` only if the result of
 another function `foo()` matches some criteria. If these are synchronous
-functions, the logic looks quite straightforward:
+functions, the logic looks like this:
 
 ```js
 var res = foo();
@@ -222,9 +228,6 @@ var doTransform = function() {
 doTransform();
 ```
 
-By most standards of readability, this second async example is much more
-difficult to understand.
-
 ### Error handling
 
 You can't use Javascript's basic error handling techniques (try/catch) to
@@ -289,13 +292,12 @@ runFooBar(function(err) {
 
 As you can see, the result of this is that we have to check the error state in
 every callback so we can short-circuit the chain and pass the error to the
-top-level callback. This is unfortunately redundant at best and easy to forget
-to do at worst.
+top-level callback. This is a bit redundant at best.
 
-Of course, Node.js now has domains, which makes this problem a little easier to
+Node.js now has domains, which makes this problem a little easier to
 handle.
 
-Alternatives to callbacks
+<a name="alternatives"></a>Alternatives to callbacks
 -------------------------
 Of course, callbacks aren't the only way to do asynchronous control flow. There
 are many helpful libraries that make using callbacks less prone to the issues
