@@ -319,6 +319,8 @@ see how they handle all the issues in one script.
 
 * [Callbacks](callbacks/) (i.e., the "standard" or "naive" approach above)
 
+Other approaches:
+
 * Caolan/async [[project](https://github.com/caolan/async)]
 * Co [[project](https://github.com/visionmedia/co)]
 * IcedCoffeeScript [[project](http://maxtaco.github.io/coffee-script/)]
