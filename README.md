@@ -318,4 +318,10 @@ Hint: take a look at the "kitchen sink" example file in each of the projects to
 see how they handle all the issues in one script.
 
 * [Callbacks](callbacks/)
-* [Monocle-js](monocle-js/) [[project](https://github.com/jlipps/monocle-js)]
+* Callbacks vs caolan/async [[project](https://github.com/caolan/async)]
+* Callbacks vs Co [[project](https://github.com/visionmedia/co)]
+* Callbacks vs IcedCoffeeScript [[project](http://maxtaco.github.io/coffee-script/)]
+* Callbacks vs @maxogden style callbacks [[website](https://callbackhell.com)]
+* Callbacks vs [Monocle-js](monocle-js/) [[project](https://github.com/jlipps/monocle-js)]
+* Callbacks vs Q [[project](https://github.com/kriskowal/q)]
+* Callbacks vs When [[project](https://github.com/cujojs/when)]
