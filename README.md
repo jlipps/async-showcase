@@ -321,6 +321,7 @@ see how they handle all the issues in one script.
 
 Other approaches:
 
+* Bluebird [[project](https://github.com/petkaantonov/bluebird)]
 * Caolan/async [[project](https://github.com/caolan/async)]
 * Co [[project](https://github.com/visionmedia/co)]
 * IcedCoffeeScript [[project](http://maxtaco.github.io/coffee-script/)]
