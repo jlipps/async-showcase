@@ -317,11 +317,12 @@ decision about which approach to adopt in your own projects!
 Hint: take a look at the "kitchen sink" example file in each of the projects to
 see how they handle all the issues in one script.
 
-* [Callbacks](callbacks/)
-* Callbacks vs caolan/async [[project](https://github.com/caolan/async)]
-* Callbacks vs Co [[project](https://github.com/visionmedia/co)]
-* Callbacks vs IcedCoffeeScript [[project](http://maxtaco.github.io/coffee-script/)]
-* Callbacks vs @maxogden style callbacks [[website](https://callbackhell.com)]
-* Callbacks vs [Monocle-js](monocle-js/) [[project](https://github.com/jlipps/monocle-js)]
-* Callbacks vs Q [[project](https://github.com/kriskowal/q)]
-* Callbacks vs When [[project](https://github.com/cujojs/when)]
+* [Callbacks](callbacks/) (i.e., the "standard" or "naive" approach above)
+
+* Caolan/async [[project](https://github.com/caolan/async)]
+* Co [[project](https://github.com/visionmedia/co)]
+* IcedCoffeeScript [[project](http://maxtaco.github.io/coffee-script/)]
+* @maxogden style callbacks [[website](https://callbackhell.com)]
+* [Monocle-js](monocle-js/) [[project](https://github.com/jlipps/monocle-js)]
+* Q [[project](https://github.com/kriskowal/q)]
+* When [[project](https://github.com/cujojs/when)]
