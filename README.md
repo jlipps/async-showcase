@@ -318,5 +318,5 @@ decision about which approach to adopt in your own projects!
 Hint: take a look at the "kitchen sink" example file in each of the projects to
 see how they handle all the issues in one script.
 
-* [callbacks](callbacks/)
-* [monocle-js](monocle-js/)
+* [Callbacks](callbacks/)
+* [Monocle-js](monocle-js/) [[project](https://github.com/jlipps/monocle-js)]
