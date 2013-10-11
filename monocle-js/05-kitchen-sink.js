@@ -7,6 +7,11 @@ var path = require('path')
   , testFile = path.resolve("..", "testFile.txt");
 
 var gratuitousFileFunction = o_O(function*() {
+  try {
+    yield fs.stat(testFile);
+    yield fs.unlink(testFile);
+  }
+  catch (ignore) {}
   yield fs.writeFile(testFile, "Hello World");
   yield sleep(0.5);
   var evenness = '';
