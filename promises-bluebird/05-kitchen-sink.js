@@ -31,19 +31,13 @@ var gratuitousFileFunction = function () {
       return fs.appendFileAsync(testFile, " " + evenness);
     }).then(function () {
       var cur = Promise.fulfilled();
-      //Map series pattern
-      var cur = Promise.fulfilled();
-      var promises = [];
       for (var i = 0; i <= 10; ++i) {
-        cur = cur.then(function (i) {
-          return function () {
-            return fs.appendFileAsync(testFile, " " + i);
-          };
-        }(i));
-        promises.push(cur);
+        cur = cur.then(function(i) {
+          return fs.appendFileAsync(testFile, " " + i);
+        }.bind(null, i));
       }
-      return promises;
-    }).all().then(function (v) {
+      return cur;
+    }).then(function (v) {
       return fs.readFileAsync(testFile);
     }).then(function (data) {
       data = data.toString();
