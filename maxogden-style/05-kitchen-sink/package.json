@@ -1,0 +1,14 @@
+{
+  "name": "gratuitous-file-function",
+  "version": "0.0.1",
+  "description": "a gratuitous file function",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "author": "max ogden",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "should": "~2.1.1"
+  }
+}
