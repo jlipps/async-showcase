@@ -27,11 +27,8 @@
     "should": "~1.2.1",
     "monocle-js": "~0.1.8",
     "monocle-fs": "~0.0.4",
-    "bluebird": "~0.8.1"
+    "bluebird": "~0.11.5-0"
   },
-  "scripts": {
-  },
-  "devDependencies": {
-  }
+  "scripts": {},
+  "devDependencies": {}
 }
-
