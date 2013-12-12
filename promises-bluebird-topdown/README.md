@@ -19,8 +19,8 @@ The kitchen sink creates a test file with some contents, then reads the file
 and verifies whether its content is as specified.
 
 1. It must ensure that the file is a new one
-2. It must put the following content: !, a time-descriptor, and the numbers
-   0-10
+2. It must put the following content: Hello World, !, a string describing the 
+   evenness of the current time and the numbers 0-10.
 3. It must check whether that content is as expected.
 
 # benefits
