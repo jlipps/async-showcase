@@ -325,7 +325,7 @@ Other approaches:
 * Caolan/async [[project](https://github.com/caolan/async)]
 * Co [[project](https://github.com/visionmedia/co)]
 * IcedCoffeeScript [[project](http://maxtaco.github.io/coffee-script/)]
-* [Max Ogden style callbacks](maxogden-style/) [[website](https://callbackhell.com)]
+* [Max Ogden style callbacks](maxogden-style/) [[website](http://callbackhell.com)]
 * [Monocle-js](monocle-js/) [[project](https://github.com/jlipps/monocle-js)]
 * Q [[project](https://github.com/kriskowal/q)]
 * When [[project](https://github.com/cujojs/when)]
