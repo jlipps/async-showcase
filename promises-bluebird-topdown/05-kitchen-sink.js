@@ -4,7 +4,6 @@ var fs = Promise.promisifyAll(require("fs"));
 var should = require('should');
 var testFile = path.resolve("..", "testFile.txt");
 
-function doNothing() {}
 
 var gratuitousFileFunction = function () {
     return ensureFileDoesntExist()
@@ -13,23 +12,21 @@ var gratuitousFileFunction = function () {
         .then(removeFile);
 }
 
+
 function ensureFileDoesntExist() {
-    return fs.statAsync(testFile).then(function () {
-        return fs.unlinkAsync(testFile);
-    }, doNothing);
+    return fs.statAsync(testFile)
+        .then(removeFile, doNothing);
 }
 
+function removeFile() { return fs.unlinkAsync(testFile); }
+function doNothing() {}
+
 function writeData() {
-    var rememberedEvenness
     return writeHelloWorldAndWait()
         .then(writeTime)
         .then(function(timeEvenness) {
-            rememberedEvenness = timeEvenness;
+            return writeNumbers().thenReturn(timeEvenness);
         })
-        .then(writeNumbers)
-        .then(function() { 
-            return rememberedEvenness
-        });
 }
 
 function writeHelloWorldAndWait() {
@@ -52,9 +49,7 @@ function writeTime() {
         return fs.appendFileAsync(testFile, "!");
     }).then(function() { 
         return fs.appendFileAsync(testFile, " " + evenness);
-    }).then(function() { 
-        return evenness; 
-    });
+    }).thenReturn(evenness);
 }
 
 function writeNumbers() {
@@ -72,10 +67,6 @@ function verifyData(timeEvenness) {
         data.should.equal("Hello World! " + timeEvenness +
                           " 0 1 2 3 4 5 6 7 8 9 10");
     });
-}
-
-function removeFile() {
-    return fs.unlinkAsync(testFile);
 }
 
 gratuitousFileFunction().then(function () {
