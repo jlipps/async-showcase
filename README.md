@@ -6,7 +6,7 @@ control flow in Javascript. If you're familiar with this concept, you might
 want to skip to the [list of projects](#alternatives) or the [description of
 callback issues](#issues).
 
-Note that this is is meant to be an informational, not a competitive, guide to
+Note that this is meant to be an informational, not a competitive, guide to
 all the approaches to flow control on offer.
 
 Background
