@@ -329,3 +329,7 @@ Other approaches:
 * [Monocle-js](monocle-js/) [[project](https://github.com/jlipps/monocle-js)]
 * Q [[project](https://github.com/kriskowal/q)]
 * When [[project](https://github.com/cujojs/when)]
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jlipps/async-showcase/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
